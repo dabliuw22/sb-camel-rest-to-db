@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    username: sa 
+    password:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mail@mail.com
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+mail:
+  from: mail@mail.com
+  to: to-mail@mail.com
+  
+route:
+  from:
+    timer: timer:restTimer?period=10s&repeatCount=1
+    local-rest: restlet:http://localhost:8080/country?restletMethods=POST
+  to: 
+    db: jdbc:dataSourceH2
+    rest: https://restcountries.eu/rest/v2/alpha/co
+    local-rest: http://localhost:8080/country
