@@ -8,6 +8,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Component;
 
@@ -33,12 +34,12 @@ public class RestCamelRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(Exception.class).log(LoggingLevel.ERROR, "Error: PersonException ${body}")
+        onException(Exception.class).log(LoggingLevel.ERROR, "Error: Exception ${body}")
                 .process(mailProcessor);
         onException(MailException.class).log(LoggingLevel.ERROR, "Error: MailException ${body}");
-        from(fromTimer).routeId("restCamelRoute").setHeader(Exchange.HTTP_METHOD, constant("GET"))
-                .to(toRest).convertBodyTo(String.class).log("body -> ${body}")
-                .setHeader(Exchange.HTTP_METHOD, constant("POST")).to(toLocalRest)
-                .log("body -> ${body}");
+        from(fromTimer).routeId("restCamelRoute")
+                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethod.GET)).to(toRest)
+                .convertBodyTo(String.class).log("body -> ${body}")
+                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethod.POST)).to(toLocalRest);
     }
 }
