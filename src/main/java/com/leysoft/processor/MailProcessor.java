@@ -1,3 +1,4 @@
+
 package com.leysoft.processor;
 
 import org.apache.camel.Exchange;
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.leysoft.service.inter.MailService;
 
-@Component(value = "mailProcessor")
+@Component(
+        value = "mailProcessor")
 public class MailProcessor implements Processor {
 
     @Value(
