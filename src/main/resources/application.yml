@@ -27,7 +27,7 @@ route:
   from:
     timer: timer:restTimer?period=10s&repeatCount=1
     local-rest: /country
-    #local-rest: restlet:http://localhost:8080/country?restletMethods=POST
+    #local-rest: restlet:http://localhost:8081/country?restletMethods=POST
   to: 
     db: jdbc:dataSourceH2
     rest: https://restcountries.eu/rest/v2/alpha/co
