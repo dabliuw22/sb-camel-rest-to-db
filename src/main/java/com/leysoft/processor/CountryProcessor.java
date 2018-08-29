@@ -13,7 +13,7 @@ public class CountryProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        String country = (String) exchange.getIn().getBody();
+        String country = exchange.getIn().getBody(String.class);
         if (country == null || country.isEmpty()) {
             throw new CountryException("Validation error");
         }

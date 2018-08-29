@@ -5,6 +5,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.eclipse.jetty.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,9 +37,8 @@ public class RestCamelRoute extends RouteBuilder {
         onException(Exception.class).log(LoggingLevel.ERROR, "Error: PersonException ${body}")
                 .process(mailProcessor);
         onException(MailException.class).log(LoggingLevel.ERROR, "Error: MailException ${body}");
-        from(fromTimer).routeId("restCamelRoute").setHeader(Exchange.HTTP_METHOD, constant("GET"))
+        from(fromTimer).routeId("restCamelRoute").setHeader(Exchange.HTTP_METHOD, constant(HttpMethod.GET))
                 .to(toRest).convertBodyTo(String.class).log("body -> ${body}")
-                .setHeader(Exchange.HTTP_METHOD, constant("POST")).to(toLocalRest)
-                .log("body -> ${body}");
+                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethod.POST)).to(toLocalRest);
     }
 }

@@ -13,12 +13,12 @@ public class DatabaseProcessor implements Processor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseProcessor.class);
 
-    private static final String INSERT_FORMAT = "insert into persons(name) values(':name')";
+    private static final String INSERT_FORMAT = "insert into countries(value) values(':value')";
 
     @Override
     public void process(Exchange exchange) throws Exception {
         String country = (String) exchange.getIn().getBody();
-        String insertCountry = INSERT_FORMAT.replace(":name", country);
+        String insertCountry = INSERT_FORMAT.replace(":value", country);
         LOGGER.info("body -> {}", insertCountry);
         exchange.getIn().setBody(insertCountry);
     }
