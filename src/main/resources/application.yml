@@ -10,8 +10,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: wleylop22@gmail.com
-    password: barcelona22
+    username: mail@mail.com
+    password: password
     properties:
       mail:
         smtp:
@@ -20,7 +20,7 @@ spring:
             enable: true
 
 mail:
-  from: wleylop22@gmail.com
+  from: mail@mail.com
   to: to-mail@mail.com
   
 route:
