@@ -43,7 +43,7 @@ public class LocalRestCamelRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-    	onException(CountryException.class).log(LoggingLevel.ERROR, "Error: PersonException ${body}")
+    	onException(CountryException.class).log(LoggingLevel.ERROR, "Error: CountryException ${body}")
         		.process(mailProcessor);
         restConfiguration().component("jetty").host("localhost").port(8081);
         rest().post(fromLocalRest).to(direct);

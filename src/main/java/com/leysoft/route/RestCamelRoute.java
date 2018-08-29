@@ -34,7 +34,7 @@ public class RestCamelRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(Exception.class).log(LoggingLevel.ERROR, "Error: PersonException ${body}")
+        onException(Exception.class).log(LoggingLevel.ERROR, "Error: Exception ${body}")
                 .process(mailProcessor);
         onException(MailException.class).log(LoggingLevel.ERROR, "Error: MailException ${body}");
         from(fromTimer).routeId("restCamelRoute").setHeader(Exchange.HTTP_METHOD, constant(HttpMethod.GET))
