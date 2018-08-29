@@ -31,7 +31,7 @@ dependencies {
 	compile('org.apache.camel:camel-http:2.22.0')
 	compile('org.apache.camel:camel-jackson:2.22.0')
 	compile('org.apache.camel:camel-jdbc:2.22.0')
-	compile('org.apache.camel:camel-restlet:2.22.0')
+	compile('org.apache.camel:camel-jetty:2.22.0')
 	compile('org.apache.camel:camel-spring-boot-starter:2.22.0')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
